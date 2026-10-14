@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portafolio · Desarrollador junior freelance</title>
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f131a; --surface:#161c26; --line:#263042; --text:#e8eaf0; --muted:#97a1b3;
+  --accent:#8fb8ff; --accent-ink:#0b1424; --warn:#e9c46a;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem)}
+section{padding:clamp(4rem,9vw,7rem) 0}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0;letter-spacing:-.015em}
+h2{font-size:clamp(1.75rem,3.6vw,2.4rem);margin-bottom:.75rem}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 2.5rem}
+p{margin:0 0 1rem;max-width:64ch}
+
+/* Cabecera */
+header{position:sticky;top:0;z-index:10;background:rgba(15,19,26,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:3.75rem}
+.brand{font-family:var(--display);font-weight:700;text-decoration:none}
+nav{display:flex;gap:1.5rem;align-items:center;font-size:.95rem}
+nav a{color:var(--muted);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--text)}
+nav .nav-cta{color:var(--accent-ink);background:var(--accent);padding:.4rem .9rem;border-radius:999px;font-weight:600}
+nav .nav-cta:hover{color:var(--accent-ink);filter:brightness(1.08)}
+@media(max-width:720px){nav a:not(.nav-cta){display:none}}
+
+/* Botones */
+.btn{display:inline-block;padding:.8rem 1.4rem;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid var(--line);cursor:pointer;font:600 1rem var(--body);transition:transform .15s,background .2s,border-color .2s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{background:transparent;color:var(--text)}
+.btn-ghost:hover{border-color:var(--muted)}
+
+/* Hero */
+.hero{padding-top:clamp(3.5rem,9vw,7rem)}
+.hero-grid{display:grid;gap:3rem;grid-template-columns:1.35fr 1fr;align-items:end}
+.hero h1{font-size:clamp(2.2rem,5.6vw,4rem);font-weight:700;max-width:16ch}
+.hero .sub{color:var(--muted);font-size:1.15rem;margin:1.5rem 0 2rem;max-width:52ch}
+.actions{display:flex;gap:.75rem;flex-wrap:wrap}
+.status{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:1.4rem 1.5rem}
+.status h3{font-size:1rem;font-family:var(--body);font-weight:600;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.status h3::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--accent);animation:pulse 2.4s ease-in-out infinite}
+.status dl{margin:0;display:grid;gap:.9rem}
+.status dt{font-size:.85rem;color:var(--muted)}
+.status dd{margin:0;font-weight:500}
+@keyframes pulse{50%{opacity:.3}}
+.hero .rise{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.hero .rise:nth-child(2){animation-delay:.12s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;align-items:start}}
+
+/* Sobre mí */
+.about{border-top:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:1rem}}
+
+/* Tecnologías */
+.tech{border-top:1px solid var(--line)}
+.cols{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+@media(max-width:720px){.cols{grid-template-columns:1fr}}
+.panel{border:1px solid var(--line);border-radius:14px;padding:1.5rem;background:var(--surface)}
+.panel h3{font-size:1.15rem;margin-bottom:.35rem}
+.panel .note{color:var(--muted);font-size:.95rem;margin-bottom:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}
+.chip{padding:.3rem .8rem;border-radius:999px;border:1px solid var(--line);font-size:.92rem;background:var(--bg)}
+.panel.use .chip{border-color:#3a5584;color:var(--accent)}
+.panel.learn{border-style:dashed;background:transparent}
+
+/* Marcadores a sustituir */
+.ph{background:rgba(233,196,106,.14);color:var(--warn);border-radius:4px;padding:.05em .4em;font-weight:500;white-space:nowrap}
+
+/* Proyectos */
+.projects{border-top:1px solid var(--line)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:980px){.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:660px){.grid3{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:14px;background:var(--surface);display:flex;flex-direction:column;overflow:hidden}
+.shot{aspect-ratio:16/10;margin:.75rem;border-radius:8px;border:1px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:.88rem;background:
+  linear-gradient(var(--line),var(--line)) 12% 18%/38% 5px no-repeat,
+  linear-gradient(var(--line),var(--line)) 12% 32%/62% 5px no-repeat,
+  linear-gradient(var(--line),var(--line)) 12% 46%/50% 5px no-repeat,
+  var(--bg)}
+.shot span{margin-top:3.2rem}
+.card-body{padding:.75rem 1.4rem 1.4rem;display:flex;flex-direction:column;gap:.9rem;flex:1}
+.badge{align-self:flex-start;font-size:.8rem;color:var(--warn);border:1px solid rgba(233,196,106,.4);border-radius:999px;padding:.15rem .65rem}
+.card h3{font-size:1.3rem}
+.card h4{margin:0 0 .25rem;font-size:.85rem;font-weight:600;color:var(--muted)}
+.card p{font-size:.97rem;margin:0}
+.card ul.feat{margin:0;padding-left:1.1rem;font-size:.95rem;color:var(--text)}
+.card ul.feat li{margin:.15rem 0}
+.card .links{margin-top:auto;display:flex;gap:1rem;font-size:.92rem;padding-top:.5rem;border-top:1px solid var(--line)}
+.off{color:var(--muted);cursor:not-allowed;text-decoration:line-through;text-decoration-color:var(--line)}
+.hint{margin-top:1.5rem;color:var(--muted);font-size:.93rem}
+
+/* Servicios */
+.services{border-top:1px solid var(--line)}
+.srv{list-style:none;margin:0 0 2rem;padding:0;border-top:1px solid var(--line)}
+.srv li{display:grid;grid-template-columns:1fr 1.5fr;gap:1.5rem;padding:1.4rem 0;border-bottom:1px solid var(--line)}
+.srv strong{font-family:var(--display);font-size:1.2rem;font-weight:500}
+.srv span{color:var(--muted)}
+@media(max-width:720px){.srv li{grid-template-columns:1fr;gap:.3rem}}
+.limits{border-left:2px solid var(--accent);padding:.2rem 0 .2rem 1.1rem;color:var(--muted);max-width:64ch;margin-bottom:2rem}
+
+/* Proceso */
+.process{border-top:1px solid var(--line)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;counter-reset:s}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+.steps li{counter-increment:s;border-top:2px solid var(--line);padding-top:1rem}
+.steps li::before{content:counter(s);font-family:var(--display);font-size:1.8rem;color:var(--accent);display:block;margin-bottom:.4rem}
+.steps strong{display:block;margin-bottom:.3rem;font-family:var(--display);font-size:1.1rem;font-weight:500}
+.steps span{color:var(--muted);font-size:.97rem}
+
+/* Contacto */
+.contact{border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+.direct{list-style:none;padding:0;margin:0;display:grid;gap:.9rem}
+.direct small{display:block;color:var(--muted)}
+form{display:grid;gap:1rem}
+label{display:grid;gap:.35rem;font-size:.92rem;color:var(--muted)}
+input,textarea,select{font:inherit;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem .9rem;width:100%}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+textarea{min-height:8.5rem;resize:vertical}
+.formnote{font-size:.9rem;color:var(--muted);border:1px dashed var(--line);border-radius:10px;padding:.8rem 1rem}
+.formnote b{color:var(--warn);font-weight:600}
+#msg{min-height:1.4em;font-size:.95rem}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.9rem}
+
+
+.shot.live{display:block;position:relative;overflow:hidden;border-style:solid;background:#fff}
+.shot.live iframe{width:1000px;height:625px;border:0;transform-origin:0 0;pointer-events:none;position:absolute;left:0;top:0}
+.shot.code{display:block;margin:.75rem;overflow:hidden;white-space:pre;text-align:left;padding:.8rem;font:.68rem/1.45 ui-monospace,Consolas,monospace;color:var(--muted);border-style:solid;background:var(--bg)}
+.lnk{background:none;border:0;padding:0;font:inherit;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+dialog{width:min(960px,96vw);height:min(86vh,800px);max-width:none;padding:0;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--text)}
+dialog[open]{display:flex;flex-direction:column}
+dialog::backdrop{background:rgba(5,8,12,.7)}
+.dh{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 1rem;border-bottom:1px solid var(--line);font-size:.95rem}
+.dh button{font:inherit;color:var(--text);background:transparent;border:1px solid var(--line);border-radius:8px;padding:.3rem .8rem;cursor:pointer;margin-left:.4rem}
+#db{flex:1;min-height:0;display:flex}
+#db iframe{flex:1;width:100%;border:0;background:#fff}
+#db pre{flex:1;margin:0;overflow:auto;padding:1rem;font:.82rem/1.5 ui-monospace,Consolas,monospace;white-space:pre;tab-size:4}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#inicio">HugoG</a>
+    <nav aria-label="Principal">
+      <a href="#proyectos">Proyectos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Cómo trabajo</a>
+      <a class="nav-cta" href="#contacto">Contactar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="rise">
+      <h1>Desarrollo soluciones digitales sencillas, útiles y bien construidas.</h1>
+      <p class="sub">Hago páginas web y pequeñas aplicaciones para negocios y profesionales que necesitan algo concreto y claro. Estoy empezando mi trayectoria como desarrollador, y por eso cuido cada encargo y te explico cada decisión.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
+        <a class="btn btn-ghost" href="#contacto">Contactar</a>
+      </div>
+    </div>
+    <aside class="status rise" aria-label="Estado actual">
+      <h3>Disponible para primeros encargos</h3>
+      <dl>
+        <div><dt>Formación</dt><dd>Ciclo superior de Desarrollo de Aplicaciones Multiplataforma (DAM)</dd></div>
+        <div><dt>Trabajo con</dt><dd>Java, Python, JavaScript, HTML y CSS</dd></div>
+        <div><dt>Busco</dt><dd>Proyectos pequeños y bien definidos</dd></div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section class="about" id="sobre-mi">
+  <div class="wrap about-grid">
+    <h2>Sobre mí</h2>
+    <div>
+      <p>Soy estudiante de DAM y me gusta programar. Aprendo sobre todo construyendo cosas: cada proyecto práctico me obliga a resolver problemas reales y a dejar el código ordenado.</p>
+      <p>Todavía no tengo años de experiencia, y prefiero decirlo claro. Lo que sí puedo ofrecerte es dedicación, comunicación directa y un trabajo revisado con cuidado. Si algo queda fuera de lo que sé hacer bien, te lo diré antes de empezar.</p>
+    </div>
+  </div>
+</section>
+
+<section class="tech" id="tecnologias">
+  <div class="wrap">
+    <h2>Tecnologías</h2>
+    <p class="lead">Lo que uso en mis proyectos y lo que sigo aprendiendo, sin niveles inventados.</p>
+    <div class="cols">
+      <div class="panel use">
+        <h3>Las que utilizo</h3>
+        <p class="note">Con ellas desarrollo mis proyectos y estudios.</p>
+        <ul class="chips"><li class="chip">Java</li><li class="chip">Python</li><li class="chip">JavaScript</li><li class="chip">HTML</li><li class="chip">CSS</li></ul>
+      </div>
+      <div class="panel learn">
+        <h3>Las que estoy aprendiendo</h3>
+        <p class="note">Aquí añadiré lo que vaya incorporando.</p>
+        <ul class="chips"><li class="chip">C</li><li class="chip">C++</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="proyectos">
+  <div class="wrap">
+    <h2>Proyectos</h2>
+    <p class="lead">Tres proyectos de ejemplo para mostrar el tipo de trabajo que puedo hacer. El negocio de la demo y los precios son ficticios.</p>
+    <div class="grid3">
+      <article class="card">
+        <div class="shot live"><iframe data-demo="negocio" title="Vista previa de la web para un negocio local" aria-hidden="true" tabindex="-1"></iframe></div>
+        <div class="card-body">
+          <span class="badge">Proyecto de ejemplo</span>
+          <h3>Web para un negocio local</h3>
+          <div><h4>Problema que resuelve</h4><p>Un comercio pequeño sin presencia online clara: los clientes no encuentran horarios, ubicación ni forma de contactar.</p></div>
+          <div><h4>Tecnologías</h4><ul class="chips"><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">JavaScript</li></ul></div>
+          <div><h4>Funcionalidades</h4><ul class="feat"><li>Diseño adaptado a móvil</li><li>Horario con aviso de abierto o cerrado</li><li>Enlaces de contacto y ubicación</li></ul></div>
+          <div class="links"><button class="lnk" data-act="demo" data-p="negocio">Ver demo</button><button class="lnk" data-act="code" data-p="negocio">Ver código</button></div>
+        </div>
+      </article>
+      <article class="card">
+        <pre class="shot code" aria-label="Vista previa del código">public class GestorGastos {
+    record Gasto(String concepto, String categoria, double importe) {}
+
+    static final Path ARCHIVO = Paths.get(&quot;gastos.csv&quot;);
+    static final List&lt;Gasto&gt; gastos = new ArrayList&lt;&gt;();
+    static final Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        cargar();
+        int op;
+        do {
+            System.out.println(&quot;\n1) Añadir gasto  2) Ver gastos  3) Total por categoría  4) Borrar gasto  0) Salir&quot;);
+            op = leerEntero(&quot;Opción: &quot;);
+            switch (op) {</pre>
+        <div class="card-body">
+          <span class="badge">Proyecto de ejemplo</span>
+          <h3>Gestor de gastos</h3>
+          <div><h4>Problema que resuelve</h4><p>Llevar el control de gastos personales o de un pequeño negocio sin depender de hojas de cálculo dispersas.</p></div>
+          <div><h4>Tecnologías</h4><ul class="chips"><li class="chip">Java</li></ul></div>
+          <div><h4>Funcionalidades</h4><ul class="feat"><li>Alta y baja de gastos</li><li>Total por categoría</li><li>Guardado de datos en archivo</li></ul></div>
+          <div class="links"><span class="off" title="Es un programa de consola, sin demo web">Demo (consola)</span><button class="lnk" data-act="code" data-p="gastos">Ver código</button></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="shot live"><iframe data-demo="calc" title="Vista previa de la calculadora de presupuesto" aria-hidden="true" tabindex="-1"></iframe></div>
+        <div class="card-body">
+          <span class="badge">Proyecto de ejemplo</span>
+          <h3>Calculadora de presupuesto</h3>
+          <div><h4>Problema que resuelve</h4><p>Que un cliente pueda estimar el coste de un servicio al instante, eligiendo opciones en una página.</p></div>
+          <div><h4>Tecnologías</h4><ul class="chips"><li class="chip">JavaScript</li><li class="chip">HTML</li><li class="chip">CSS</li></ul></div>
+          <div><h4>Funcionalidades</h4><ul class="feat"><li>Selección de servicios y cantidades</li><li>Total actualizado en vivo</li><li>Precios fáciles de configurar</li></ul></div>
+          <div class="links"><button class="lnk" data-act="demo" data-p="calc">Ver demo</button><button class="lnk" data-act="code" data-p="calc">Ver código</button></div>
+        </div>
+      </article>
+    </div>
+    <p class="hint">Pulsa «Ver código» para leer el código fuente de cada proyecto.</p>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="wrap">
+    <h2>Servicios</h2>
+    <p class="lead">Encargos pequeños y concretos, dentro de lo que puedo hacer con calidad.</p>
+    <ul class="srv">
+      <li><strong>Páginas web sencillas</strong><span>Para pequeños negocios y profesionales: presentación, servicios y datos de contacto, adaptadas a móvil.</span></li>
+      <li><strong>Páginas web interactivas</strong><span>Calculadoras, formularios, filtros y otras herramientas que funcionan en el navegador con JavaScript.</span></li>
+      <li><strong>Programas en Java y Python</strong><span>Pequeñas aplicaciones para resolver una necesidad concreta, como gestionar datos o automatizar una tarea.</span></li>
+      <li><strong>Mejoras y correcciones</strong><span>Modificaciones, arreglos y ajustes sencillos sobre código existente, dentro de mis capacidades.</span></li>
+    </ul>
+    <p class="limits">Por ahora no asumo sistemas complejos ni aplicaciones empresariales avanzadas. Si tu idea es más grande, te lo diré y podemos valorar un primer paso asumible.</p>
+    <a class="btn btn-primary" href="#contacto">Solicitar presupuesto</a>
+  </div>
+</section>
+
+<section class="process" id="proceso">
+  <div class="wrap">
+    <h2>Cómo trabajo</h2>
+    <p class="lead">Un proceso simple, con comunicación en cada paso. Los plazos los acordamos según el alcance real del trabajo.</p>
+    <ol class="steps">
+      <li><strong>Me cuentas qué necesitas</strong><span>Explícame la idea, para quién es y qué quieres conseguir.</span></li>
+      <li><strong>Definimos el alcance</strong><span>Acordamos qué funcionalidades entran y cuáles quedan fuera.</span></li>
+      <li><strong>Desarrollo y te enseño avances</strong><span>Trabajo por partes y te muestro el progreso para ajustar a tiempo.</span></li>
+      <li><strong>Revisamos y entrego</strong><span>Comprobamos el resultado juntos y entrego el trabajo acordado.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <h2>Contacto</h2>
+    <p class="lead">Cuéntame brevemente tu proyecto y te respondo con sinceridad sobre si puedo ayudarte.</p>
+    <div class="contact-grid">
+      <ul class="direct">
+        <li><small>Correo electrónico</small><a href="mailto:hugogomezdovalo00@gmail.com" style="color:var(--accent)">hugogomezdovalo00@gmail.com</a></li>
+        <li><small>GitHub</small><a href="https://github.com/oguh14" target="_blank" rel="noopener" style="color:var(--accent)">github.com/oguh14</a></li>
+      </ul>
+      <form id="f" novalidate>
+        <label>Nombre<input name="nombre" autocomplete="name" required></label>
+        <label>Tu correo<input name="email" type="email" autocomplete="email" required></label>
+        <label>¿Qué necesitas?
+          <select name="tipo">
+            <option>Página web sencilla</option><option>Página web interactiva</option>
+            <option>Programa o aplicación en Java o Python</option><option>Mejora o corrección de código</option><option>Otra cosa</option>
+          </select>
+        </label>
+        <label>Mensaje<textarea name="mensaje" required></textarea></label>
+        <div class="actions">
+          <a class="btn btn-primary" id="b-gm" href="#contacto" target="_blank" rel="noopener">Abrir en Gmail</a>
+          <a class="btn btn-ghost" id="b-out" href="#contacto" target="_blank" rel="noopener">Abrir en Outlook</a>
+          <a class="btn btn-ghost" id="b-app" href="#contacto" target="_blank" rel="noopener">Usar app de correo</a>
+          <button class="btn btn-ghost" type="button" id="b-copy">Copiar mensaje</button>
+        </div>
+        <div id="msg" role="status" aria-live="polite"></div>
+        <p class="formnote"><b>Este formulario no tiene servidor conectado</b> y no envía nada por sí solo: prepara el mensaje y lo abres en el correo que uses, y lo mandas tú. Si ninguna opción te funciona, usa «Copiar mensaje» y envíalo a hugogomezdovalo00@gmail.com.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">HugoG · Desarrollador junior freelance</div></footer>
+
+<script>
+var CONTACT_EMAIL = "hugogomezdovalo00@gmail.com";
+(function () {
+  var f = document.getElementById("f"), msg = document.getElementById("msg");
+  var enc = encodeURIComponent;
+  var gm = document.getElementById("b-gm"), out = document.getElementById("b-out"), app = document.getElementById("b-app");
+  function data() {
+    return {
+      subject: "Consulta desde el portafolio: " + f.tipo.value,
+      body: "Nombre: " + f.nombre.value + "\nCorreo: " + f.email.value + "\nTipo: " + f.tipo.value + "\n\n" + f.mensaje.value
+    };
+  }
+  function valid() {
+    var ok = f.nombre.value.trim() && f.email.validity.valid && f.mensaje.value.trim();
+    if (!ok) msg.textContent = "Rellena nombre, un correo válido y el mensaje.";
+    return !!ok;
+  }
+  function refresh() {
+    var d = data(), q = enc(CONTACT_EMAIL);
+    gm.href = "https://mail.google.com/mail/?view=cm&fs=1&to=" + q + "&su=" + enc(d.subject) + "&body=" + enc(d.body);
+    out.href = "https://outlook.live.com/mail/0/deeplink/compose?to=" + q + "&subject=" + enc(d.subject) + "&body=" + enc(d.body);
+    app.href = "mailto:" + CONTACT_EMAIL + "?subject=" + enc(d.subject) + "&body=" + enc(d.body);
+  }
+  f.addEventListener("input", refresh);
+  f.addEventListener("submit", function (e) { e.preventDefault(); });
+  [gm, out, app].forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      refresh();
+      if (!valid()) { e.preventDefault(); return; }
+      msg.textContent = "Si la pestaña no carga o no se abre, usa «Copiar mensaje» y envíalo a " + CONTACT_EMAIL + ".";
+    });
+  });
+  document.getElementById("b-copy").addEventListener("click", function () {
+    if (!valid()) return;
+    var d = data();
+    var text = "Para: " + CONTACT_EMAIL + "\nAsunto: " + d.subject + "\n\n" + d.body;
+    function done(ok) {
+      msg.textContent = ok ? "Mensaje copiado. Pégalo en tu correo y envíalo a " + CONTACT_EMAIL + "."
+        : "No se pudo copiar. Escribe a " + CONTACT_EMAIL + " directamente.";
+    }
+    function fallback() {
+      var t = document.createElement("textarea");
+      t.value = text; t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select();
+      var ok = false; try { ok = document.execCommand("copy"); } catch (x) {}
+      t.remove(); done(ok);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, fallback);
+    } else { fallback(); }
+  });
+  refresh();
+})();
+</script>
+<dialog id="dlg" aria-label="Proyecto"><div class="dh"><strong id="dt"></strong><span><button type="button" id="dcopy" hidden>Copiar código</button><button type="button" id="dx">Cerrar</button></span></div><div id="db"></div></dialog>
+<script>
+var SRC={"negocio": {"title": "Web para un negocio local", "file": "negocio-local.html", "code": "<!DOCTYPE html><html lang=\"es\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\"><title>Cafetería Casa Marín (demo)<\/title>\n<style>\n:root{--bg:#faf6ef;--ink:#2b2118;--mut:#6f6256;--acc:#8a4b2a;--line:#e4d9c8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}\n*{box-sizing:inherit}body{margin:0;background:var(--bg);color:var(--ink);font:1.05rem/1.6 Georgia,\"Times New Roman\",serif}\n.demo{background:var(--ink);color:#fff;font:.85rem system-ui,sans-serif;text-align:center;padding:.5rem 1rem}\nmain{max-width:720px;margin:0 auto;padding:3rem 1.25rem}\nh1{font-size:clamp(2rem,7vw,3rem);margin:0 0 .4rem}h2{font-size:1.3rem;margin:2.5rem 0 .75rem}\n.tag{color:var(--mut);margin:0 0 1.5rem}\n.state{display:inline-block;padding:.35rem .9rem;border-radius:999px;font:600 .9rem system-ui,sans-serif;background:#e8f1e4;color:#2f5d2a}\n.state.off{background:#f6e3df;color:#8a2f22}\ntable{width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;font-size:.97rem}\ntd{padding:.55rem 0;border-bottom:1px solid var(--line)}td:last-child{text-align:right}tr.hoy td{font-weight:700;color:var(--acc)}\nul{padding-left:1.1rem}a.btn{display:inline-block;margin:.4rem .4rem 0 0;padding:.7rem 1.2rem;border-radius:8px;background:var(--acc);color:#fff;text-decoration:none;font:600 1rem system-ui,sans-serif}\na.btn.alt{background:transparent;color:var(--acc);border:1px solid var(--acc)}\n<\/style><\/head><body>\n<div class=\"demo\">Proyecto de ejemplo con un negocio ficticio: los datos no son reales.<\/div>\n<main>\n<h1>Cafetería Casa Marín<\/h1><p class=\"tag\">Café de especialidad y repostería casera.<\/p>\n<span class=\"state\" id=\"st\">Comprobando…<\/span>\n<h2>Horario<\/h2><table id=\"h\"><\/table>\n<h2>Qué encontrarás<\/h2><ul><li>Café de filtro y espresso<\/li><li>Tostadas y bollería del día<\/li><li>Menú de desayunos<\/li><\/ul>\n<h2>Dónde estamos<\/h2><p>Calle de Ejemplo, 12 (dirección ficticia).<\/p>\n<a class=\"btn\" href=\"tel:+34000000000\">Llamar<\/a><a class=\"btn alt\" href=\"#h\">Ver horario<\/a>\n<\/main>\n<script>\nvar H=[[\"Domingo\",null],[\"Lunes\",[8,20]],[\"Martes\",[8,20]],[\"Miércoles\",[8,20]],[\"Jueves\",[8,20]],[\"Viernes\",[8,20]],[\"Sábado\",[9,14]]];\nvar now=new Date(),d=now.getDay(),t=now.getHours()+now.getMinutes()/60;\nvar rows=[1,2,3,4,5,6,0].map(function(i){var r=H[i][1];return'<tr'+(i===d?' class=\"hoy\"':'')+'><td>'+H[i][0]+'<\/td><td>'+(r?r[0]+':00 – '+r[1]+':00':'Cerrado')+'<\/td><\/tr>'});\ndocument.getElementById(\"h\").innerHTML=rows.join(\"\");\nvar r=H[d][1],open=r&&t>=r[0]&&t<r[1],st=document.getElementById(\"st\");\nst.textContent=open?\"Abierto ahora · cierra a las \"+r[1]+\":00\":\"Cerrado ahora\";st.className=\"state\"+(open?\"\":\" off\");\n<\/script><\/body><\/html>\n", "html": "<!DOCTYPE html><html lang=\"es\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\"><title>Cafetería Casa Marín (demo)<\/title>\n<style>\n:root{--bg:#faf6ef;--ink:#2b2118;--mut:#6f6256;--acc:#8a4b2a;--line:#e4d9c8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}\n*{box-sizing:inherit}body{margin:0;background:var(--bg);color:var(--ink);font:1.05rem/1.6 Georgia,\"Times New Roman\",serif}\n.demo{background:var(--ink);color:#fff;font:.85rem system-ui,sans-serif;text-align:center;padding:.5rem 1rem}\nmain{max-width:720px;margin:0 auto;padding:3rem 1.25rem}\nh1{font-size:clamp(2rem,7vw,3rem);margin:0 0 .4rem}h2{font-size:1.3rem;margin:2.5rem 0 .75rem}\n.tag{color:var(--mut);margin:0 0 1.5rem}\n.state{display:inline-block;padding:.35rem .9rem;border-radius:999px;font:600 .9rem system-ui,sans-serif;background:#e8f1e4;color:#2f5d2a}\n.state.off{background:#f6e3df;color:#8a2f22}\ntable{width:100%;border-collapse:collapse;font-family:system-ui,sans-serif;font-size:.97rem}\ntd{padding:.55rem 0;border-bottom:1px solid var(--line)}td:last-child{text-align:right}tr.hoy td{font-weight:700;color:var(--acc)}\nul{padding-left:1.1rem}a.btn{display:inline-block;margin:.4rem .4rem 0 0;padding:.7rem 1.2rem;border-radius:8px;background:var(--acc);color:#fff;text-decoration:none;font:600 1rem system-ui,sans-serif}\na.btn.alt{background:transparent;color:var(--acc);border:1px solid var(--acc)}\n<\/style><\/head><body>\n<div class=\"demo\">Proyecto de ejemplo con un negocio ficticio: los datos no son reales.<\/div>\n<main>\n<h1>Cafetería Casa Marín<\/h1><p class=\"tag\">Café de especialidad y repostería casera.<\/p>\n<span class=\"state\" id=\"st\">Comprobando…<\/span>\n<h2>Horario<\/h2><table id=\"h\"><\/table>\n<h2>Qué encontrarás<\/h2><ul><li>Café de filtro y espresso<\/li><li>Tostadas y bollería del día<\/li><li>Menú de desayunos<\/li><\/ul>\n<h2>Dónde estamos<\/h2><p>Calle de Ejemplo, 12 (dirección ficticia).<\/p>\n<a class=\"btn\" href=\"tel:+34000000000\">Llamar<\/a><a class=\"btn alt\" href=\"#h\">Ver horario<\/a>\n<\/main>\n<script>\nvar H=[[\"Domingo\",null],[\"Lunes\",[8,20]],[\"Martes\",[8,20]],[\"Miércoles\",[8,20]],[\"Jueves\",[8,20]],[\"Viernes\",[8,20]],[\"Sábado\",[9,14]]];\nvar now=new Date(),d=now.getDay(),t=now.getHours()+now.getMinutes()/60;\nvar rows=[1,2,3,4,5,6,0].map(function(i){var r=H[i][1];return'<tr'+(i===d?' class=\"hoy\"':'')+'><td>'+H[i][0]+'<\/td><td>'+(r?r[0]+':00 – '+r[1]+':00':'Cerrado')+'<\/td><\/tr>'});\ndocument.getElementById(\"h\").innerHTML=rows.join(\"\");\nvar r=H[d][1],open=r&&t>=r[0]&&t<r[1],st=document.getElementById(\"st\");\nst.textContent=open?\"Abierto ahora · cierra a las \"+r[1]+\":00\":\"Cerrado ahora\";st.className=\"state\"+(open?\"\":\" off\");\n<\/script><\/body><\/html>\n"}, "gastos": {"title": "Gestor de gastos", "file": "GestorGastos.java", "code": "import java.io.*;\nimport java.nio.file.*;\nimport java.util.*;\n\n/** Gestor de gastos sencillo por consola. Guarda los datos en gastos.csv. */\npublic class GestorGastos {\n    record Gasto(String concepto, String categoria, double importe) {}\n\n    static final Path ARCHIVO = Paths.get(\"gastos.csv\");\n    static final List<Gasto> gastos = new ArrayList<>();\n    static final Scanner in = new Scanner(System.in);\n\n    public static void main(String[] args) throws IOException {\n        cargar();\n        int op;\n        do {\n            System.out.println(\"\\n1) Añadir gasto  2) Ver gastos  3) Total por categoría  4) Borrar gasto  0) Salir\");\n            op = leerEntero(\"Opción: \");\n            switch (op) {\n                case 1 -> anadir();\n                case 2 -> listar();\n                case 3 -> totales();\n                case 4 -> borrar();\n                case 0 -> System.out.println(\"Hasta pronto.\");\n                default -> System.out.println(\"Opción no válida.\");\n            }\n        } while (op != 0);\n    }\n\n    static void anadir() throws IOException {\n        System.out.print(\"Concepto: \");\n        String c = in.nextLine().trim().replace(\";\", \",\");\n        System.out.print(\"Categoría: \");\n        String cat = in.nextLine().trim().replace(\";\", \",\");\n        double imp = leerDecimal(\"Importe (€): \");\n        gastos.add(new Gasto(c, cat, imp));\n        guardar();\n        System.out.println(\"Gasto guardado.\");\n    }\n\n    static void listar() {\n        if (gastos.isEmpty()) { System.out.println(\"No hay gastos todavía.\"); return; }\n        for (int i = 0; i < gastos.size(); i++) {\n            Gasto g = gastos.get(i);\n            System.out.printf(\"%d. %s [%s] %.2f €%n\", i + 1, g.concepto(), g.categoria(), g.importe());\n        }\n    }\n\n    static void totales() {\n        Map<String, Double> t = new TreeMap<>();\n        double suma = 0;\n        for (Gasto g : gastos) { t.merge(g.categoria(), g.importe(), Double::sum); suma += g.importe(); }\n        t.forEach((k, v) -> System.out.printf(\"%s: %.2f €%n\", k, v));\n        System.out.printf(\"TOTAL: %.2f €%n\", suma);\n    }\n\n    static void borrar() throws IOException {\n        listar();\n        int n = leerEntero(\"Número a borrar (0 cancela): \");\n        if (n >= 1 && n <= gastos.size()) { gastos.remove(n - 1); guardar(); System.out.println(\"Borrado.\"); }\n    }\n\n    static void cargar() throws IOException {\n        if (!Files.exists(ARCHIVO)) return;\n        for (String linea : Files.readAllLines(ARCHIVO)) {\n            String[] p = linea.split(\";\");\n            if (p.length == 3) gastos.add(new Gasto(p[0], p[1], Double.parseDouble(p[2])));\n        }\n    }\n\n    static void guardar() throws IOException {\n        List<String> l = new ArrayList<>();\n        for (Gasto g : gastos) l.add(g.concepto() + \";\" + g.categoria() + \";\" + g.importe());\n        Files.write(ARCHIVO, l);\n    }\n\n    static int leerEntero(String msg) {\n        while (true) {\n            System.out.print(msg);\n            try { return Integer.parseInt(in.nextLine().trim()); }\n            catch (NumberFormatException e) { System.out.println(\"Escribe un número entero.\"); }\n        }\n    }\n\n    static double leerDecimal(String msg) {\n        while (true) {\n            System.out.print(msg);\n            try { return Double.parseDouble(in.nextLine().trim().replace(',', '.')); }\n            catch (NumberFormatException e) { System.out.println(\"Escribe un número válido.\"); }\n        }\n    }\n}\n"}, "calc": {"title": "Calculadora de presupuesto", "file": "calculadora-presupuesto.html", "code": "<!DOCTYPE html><html lang=\"es\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\"><title>Calculadora de presupuesto (demo)<\/title>\n<style>\n:root{--bg:#10151d;--card:#171e29;--line:#27313f;--ink:#e8eaf0;--mut:#98a2b3;--acc:#8fb8ff;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}\n*{box-sizing:inherit}body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.6 system-ui,\"Segoe UI\",sans-serif}\nmain{max-width:640px;margin:0 auto;padding:2.5rem 1.25rem}h1{font-size:1.8rem;margin:0 0 .4rem}\n.note{color:var(--mut);font-size:.92rem;border:1px dashed var(--line);border-radius:10px;padding:.7rem .9rem;margin:0 0 1.5rem}\n.row{display:grid;grid-template-columns:1fr 5.5rem 5rem;gap:.75rem;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--line)}\n.row small{display:block;color:var(--mut)}input{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.45rem .5rem}\ninput:focus-visible{outline:2px solid var(--acc)}.head{color:var(--mut);font-size:.85rem;border-bottom:1px solid var(--line);padding:.4rem 0}\n.tot{display:flex;justify-content:space-between;align-items:baseline;margin-top:1.5rem;font-size:1.1rem}.tot b{font-size:2rem;color:var(--acc)}\n@media(max-width:480px){.row{grid-template-columns:1fr 4.5rem 4.5rem}}\n<\/style><\/head><body><main>\n<h1>Calculadora de presupuesto<\/h1>\n<p class=\"note\">Demo con precios ficticios. Cambia la cantidad o el precio de cada servicio y el total se actualiza al momento.<\/p>\n<div class=\"row head\"><span>Servicio<\/span><span>Precio (€)<\/span><span>Cantidad<\/span><\/div>\n<div id=\"l\"><\/div>\n<div class=\"tot\"><span>Total estimado<\/span><b id=\"t\">0 €<\/b><\/div>\n<script>\nvar S=[[\"Web de una página\",\"Presentación, servicios y contacto\",120],[\"Página adicional\",\"Cada página extra\",40],[\"Formulario de contacto\",\"Con aviso de envío\",30],[\"Ajustes y correcciones\",\"Por hora\",15]];\nvar l=document.getElementById(\"l\");\nS.forEach(function(s,i){var r=document.createElement(\"div\");r.className=\"row\";\nr.innerHTML='<span>'+s[0]+'<small>'+s[1]+'<\/small><\/span><input type=\"number\" min=\"0\" value=\"'+s[2]+'\" aria-label=\"Precio de '+s[0]+'\"><input type=\"number\" min=\"0\" value=\"0\" aria-label=\"Cantidad de '+s[0]+'\">';l.appendChild(r)});\nfunction calc(){var tot=0;l.querySelectorAll(\".row\").forEach(function(r){var i=r.querySelectorAll(\"input\");tot+=(+i[0].value||0)*(+i[1].value||0)});\ndocument.getElementById(\"t\").textContent=tot.toLocaleString(\"es-ES\")+\" €\"}\nl.addEventListener(\"input\",calc);calc();\n<\/script><\/main><\/body><\/html>\n", "html": "<!DOCTYPE html><html lang=\"es\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\"><title>Calculadora de presupuesto (demo)<\/title>\n<style>\n:root{--bg:#10151d;--card:#171e29;--line:#27313f;--ink:#e8eaf0;--mut:#98a2b3;--acc:#8fb8ff;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}\n*{box-sizing:inherit}body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.6 system-ui,\"Segoe UI\",sans-serif}\nmain{max-width:640px;margin:0 auto;padding:2.5rem 1.25rem}h1{font-size:1.8rem;margin:0 0 .4rem}\n.note{color:var(--mut);font-size:.92rem;border:1px dashed var(--line);border-radius:10px;padding:.7rem .9rem;margin:0 0 1.5rem}\n.row{display:grid;grid-template-columns:1fr 5.5rem 5rem;gap:.75rem;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--line)}\n.row small{display:block;color:var(--mut)}input{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.45rem .5rem}\ninput:focus-visible{outline:2px solid var(--acc)}.head{color:var(--mut);font-size:.85rem;border-bottom:1px solid var(--line);padding:.4rem 0}\n.tot{display:flex;justify-content:space-between;align-items:baseline;margin-top:1.5rem;font-size:1.1rem}.tot b{font-size:2rem;color:var(--acc)}\n@media(max-width:480px){.row{grid-template-columns:1fr 4.5rem 4.5rem}}\n<\/style><\/head><body><main>\n<h1>Calculadora de presupuesto<\/h1>\n<p class=\"note\">Demo con precios ficticios. Cambia la cantidad o el precio de cada servicio y el total se actualiza al momento.<\/p>\n<div class=\"row head\"><span>Servicio<\/span><span>Precio (€)<\/span><span>Cantidad<\/span><\/div>\n<div id=\"l\"><\/div>\n<div class=\"tot\"><span>Total estimado<\/span><b id=\"t\">0 €<\/b><\/div>\n<script>\nvar S=[[\"Web de una página\",\"Presentación, servicios y contacto\",120],[\"Página adicional\",\"Cada página extra\",40],[\"Formulario de contacto\",\"Con aviso de envío\",30],[\"Ajustes y correcciones\",\"Por hora\",15]];\nvar l=document.getElementById(\"l\");\nS.forEach(function(s,i){var r=document.createElement(\"div\");r.className=\"row\";\nr.innerHTML='<span>'+s[0]+'<small>'+s[1]+'<\/small><\/span><input type=\"number\" min=\"0\" value=\"'+s[2]+'\" aria-label=\"Precio de '+s[0]+'\"><input type=\"number\" min=\"0\" value=\"0\" aria-label=\"Cantidad de '+s[0]+'\">';l.appendChild(r)});\nfunction calc(){var tot=0;l.querySelectorAll(\".row\").forEach(function(r){var i=r.querySelectorAll(\"input\");tot+=(+i[0].value||0)*(+i[1].value||0)});\ndocument.getElementById(\"t\").textContent=tot.toLocaleString(\"es-ES\")+\" €\"}\nl.addEventListener(\"input\",calc);calc();\n<\/script><\/main><\/body><\/html>\n"}};
+(function(){
+  var dlg=document.getElementById("dlg"),db=document.getElementById("db"),dt=document.getElementById("dt"),cp=document.getElementById("dcopy"),cur=null;
+  document.querySelectorAll("iframe[data-demo]").forEach(function(f){f.setAttribute("sandbox","allow-scripts");f.srcdoc=SRC[f.dataset.demo].html;});
+  function fit(){document.querySelectorAll(".shot.live").forEach(function(s){s.firstElementChild.style.transform="scale("+(s.clientWidth/1000)+")";});}
+  fit();window.addEventListener("resize",fit);window.addEventListener("load",fit);
+  document.querySelectorAll(".lnk").forEach(function(b){b.addEventListener("click",function(){
+    var p=SRC[b.dataset.p];cur=p;db.textContent="";
+    if(b.dataset.act==="demo"){
+      dt.textContent=p.title+" (demo)";cp.hidden=true;
+      var f=document.createElement("iframe");f.setAttribute("sandbox","allow-scripts");f.title=p.title;f.srcdoc=p.html;db.appendChild(f);
+    }else{
+      dt.textContent=p.file;cp.hidden=false;cp.textContent="Copiar código";
+      var pre=document.createElement("pre");pre.textContent=p.code;db.appendChild(pre);
+    }
+    dlg.showModal();
+  });});
+  document.getElementById("dx").addEventListener("click",function(){dlg.close();});
+  dlg.addEventListener("click",function(e){if(e.target===dlg)dlg.close();});
+  dlg.addEventListener("close",function(){db.textContent="";});
+  cp.addEventListener("click",function(){
+    function ok(v){cp.textContent=v?"Copiado":"No se pudo copiar";}
+    function fb(){var t=document.createElement("textarea");t.value=cur.code;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();var r=false;try{r=document.execCommand("copy");}catch(x){}t.remove();ok(r);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(cur.code).then(function(){ok(true);},fb);}else{fb();}
+  });
+})();
+</script>
+</body>
+</html>
