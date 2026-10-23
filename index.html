@@ -418,7 +418,8 @@ html.go .portrait{animation-play-state:running}
 form{max-width:42rem;margin:0 auto}
 input,textarea,select{border-radius:14px;background:rgba(255,255,255,.04)}
 footer{background:#050507;text-align:center}
-@media(prefers-reduced-motion:reduce){#intro{display:none}html:not(.go){overflow:auto}.portrait{animation:none!important}}
+/* La intro conserva su secuencia; el resto de efectos sí respeta movimiento reducido. */
+@media(prefers-reduced-motion:reduce){#intro{display:grid!important;transition:clip-path 1.1s cubic-bezier(.76,0,.24,1)!important}#intro b{animation:ipop 1.2s .2s both!important}#intro b i{animation:idot .4s 1.6s forwards!important}#intro path{animation:idraw 1.9s .1s cubic-bezier(.65,0,.35,1) forwards!important}.portrait{animation:none!important}}
 .dots{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .hero>.wrap{position:relative;z-index:2}
 /* Núcleo animado del hero (sustituye al retrato) */
@@ -761,7 +762,8 @@ var SRC={"negocio": {"title": "Web para un negocio local", "file": "negocio-loca
 (function(){
  var de=document.documentElement,rm=matchMedia("(prefers-reduced-motion:reduce)").matches,intro=document.getElementById("intro");
  function go(){de.classList.add("go");if(intro){intro.classList.add("out");setTimeout(function(){intro.remove();},1300);}}
- if(rm||!intro){go();}else{setTimeout(go,2700);window.addEventListener("load",function(){setTimeout(function(){if(!de.classList.contains("go"))go();},4500);});}
+ /* La misma intro se ejecuta en móvil y escritorio, incluso con movimiento reducido. */
+ if(!intro){go();}else{setTimeout(go,2700);window.addEventListener("load",function(){setTimeout(function(){if(!de.classList.contains("go"))go();},4500);});}
  /* Índice de proyectos */
  var cards=[].slice.call(document.querySelectorAll(".projects .card")),pj=document.querySelector(".projects"),idx=null;
  if(pj&&cards.length){idx=document.createElement("ol");idx.className="pindex";idx.setAttribute("aria-hidden","true");
