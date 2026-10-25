@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#080d1c">
+  <title>Ayuda · HugoG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#080d1c;--surface:#0e1630;--line:rgba(170,192,235,.16);--line-strong:rgba(170,192,235,.32);--text:#f2f5fb;--text-2:#c3cce2;--muted:#8c99ba;--accent:#ef8a58;--accent-hi:#f7a577;--ice:#a9c1ea;font-family:'Outfit',system-ui,sans-serif}
+    *{box-sizing:border-box}
+    html{min-width:320px;min-height:100%;background:var(--bg)}
+    body{min-width:320px;min-height:100vh;margin:0;background:radial-gradient(ellipse at 78% 12%,#142042 0%,var(--bg) 48%);color:var(--text);font:400 15px/1.65 'Outfit',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+    .topbar{height:68px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(8,13,28,.7);backdrop-filter:blur(14px)}
+    .topbar-inner{width:min(1180px,100%);display:flex;align-items:center;justify-content:space-between;margin:auto;padding:0 clamp(20px,5vw,58px)}
+    .brand{color:var(--text);font-size:22px;font-weight:500;letter-spacing:-.02em;text-decoration:none}
+    .brand::after{content:"";display:inline-block;width:6px;height:6px;margin:0 0 2px 4px;border-radius:50%;background:var(--accent)}
+    .back{display:inline-flex;align-items:center;gap:8px;color:var(--text-2);font-size:12px;letter-spacing:.06em;text-decoration:none;transition:color .2s}
+    .back:hover{color:var(--accent-hi)}
+    .back svg{width:15px;height:15px}
+    main{width:min(1180px,100%);display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,480px);align-items:center;gap:clamp(40px,8vw,110px);margin:0 auto;padding:clamp(42px,7vh,78px) clamp(20px,5vw,58px)}
+    .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px;color:var(--muted);font-size:10px;font-weight:500;letter-spacing:.19em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:28px;height:1px;background:var(--accent)}
+    h1{max-width:600px;margin:0 0 22px;font-size:clamp(44px,6.5vw,76px);font-weight:400;line-height:1.02;letter-spacing:-.045em}
+    h1 span{color:var(--accent)}
+    .intro{max-width:48ch;margin:0;color:var(--text-2);font-size:16px;font-weight:300;line-height:1.85}
+    .topics{display:grid;gap:0;margin:34px 0 0;padding:0;border-top:1px solid var(--line);list-style:none}
+    .topics li{display:flex;align-items:center;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);color:var(--text-2);font-size:12px}
+    .topics b{color:var(--accent);font-size:9px;font-weight:500;letter-spacing:.1em}
+    .privacy{max-width:46ch;margin:20px 0 0;color:var(--muted);font-size:11px}
+    .chat-label{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px;color:var(--muted);font-size:9px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+    .chat-label span:first-child{display:flex;align-items:center;gap:8px}
+    .chat-label i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(239,138,88,.4)}
+    .chat-frame{width:100%;height:min(700px,calc(100svh - 150px));min-height:580px;display:block;overflow:hidden;border:1px solid var(--line-strong);border-radius:8px;background:#0e0e10;box-shadow:0 24px 75px rgba(0,0,0,.48)}
+    footer{display:flex;justify-content:space-between;gap:16px;padding:20px clamp(20px,5vw,58px);border-top:1px solid var(--line);color:var(--muted);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+    @media(max-width:820px){main{max-width:620px;grid-template-columns:1fr;gap:34px;padding:36px 22px 44px}.intro{max-width:58ch}h1{font-size:clamp(42px,9vw,62px)}.chat-frame{height:min(680px,calc(100svh - 260px));min-height:540px}}
+    @media(max-width:500px){.topbar{height:60px}.topbar-inner{padding:0 17px}.back{font-size:10px}main{gap:24px;padding:30px 16px 36px}.eyebrow{margin-bottom:15px;font-size:9px}h1{margin-bottom:15px;font-size:clamp(40px,11vw,54px)}.intro{font-size:14px}.topics{margin-top:23px}.topics li{padding:10px 0;font-size:11px}.chat-frame{height:min(650px,calc(100svh - 270px));min-height:500px}footer{flex-wrap:wrap;padding-block:14px;font-size:8px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="HugoG, volver al portafolio">HugoG</a>
+      <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h12"/></svg> Volver al portafolio</a>
+    </div>
+  </header>
+  <main>
+    <section aria-labelledby="page-title">
+      <div class="eyebrow">Ayuda · HugoG</div>
+      <h1 id="page-title">Resolvamos tus dudas<span>.</span></h1>
+      <p class="intro">Pregunta sobre los servicios, proyectos, tecnologías o proceso de trabajo. El asistente te orienta con la información del portafolio.</p>
+      <ul class="topics" aria-label="Temas del chat">
+        <li><b>01</b> Servicios y tipos de proyecto</li>
+        <li><b>02</b> Tecnologías y proyectos de ejemplo</li>
+        <li><b>03</b> Proceso, alcance y presupuesto</li>
+      </ul>
+      <p class="privacy">No hace falta compartir contraseñas, datos de pago, teléfono ni información personal.</p>
+    </section>
+    <section aria-label="Chat de ayuda">
+      <div class="chat-label"><span><i></i> Chat de ayuda</span><span>HugoG · IA</span></div>
+      <iframe class="chat-frame" src="https://orderly-4jcizlde.manus.space/?embed=1" title="Chat de ayuda de HugoG" loading="eager" allow="clipboard-write" referrerpolicy="no-referrer"></iframe>
+    </section>
+  </main>
+  <footer><span>HugoG · Ayuda</span><span>Respuestas basadas en el portafolio</span></footer>
+</body>
+</html>
