@@ -425,7 +425,8 @@ footer{background:#050507;text-align:center}
 /* Ojos animados del hero (sustituyen a la esfera interactiva .core) */
 .portrait{width:min(34vw,420px);aspect-ratio:1;bottom:-14%;-webkit-mask-image:linear-gradient(#000 70%,transparent 98%);mask-image:linear-gradient(#000 70%,transparent 98%);display:flex;align-items:center;justify-content:center}
 .eyes-card{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:#050507;box-shadow:0 24px 60px -15px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08),inset 0 0 45px rgba(255,255,255,.07);pointer-events:none}
-.eyes-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:50%;display:block;pointer-events:none;filter:contrast(1.04) brightness(1.02)}
+.eyes-svg{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;display:block;pointer-events:none}
+.eyelid{transition:height .13s cubic-bezier(.4,0,.2,1)}
 .fl{position:absolute;z-index:5;font:600 1.1rem/1 ui-monospace,Menlo,Consolas,monospace;color:rgba(255,255,255,.28);animation:flt var(--d,9s) ease-in-out infinite alternate;animation-delay:var(--w,0s);pointer-events:none}
 @keyframes flt{from{transform:translate(0,0) rotate(-8deg);opacity:.15}to{transform:translate(var(--x,14px),var(--y,-30px)) rotate(10deg);opacity:.7}}
 /* Titular: revelado por palabras */
@@ -500,60 +501,49 @@ nav .nav-cta.hv{background:#333;color:#fff}
 <section class="hero">
   <div class="portrait eyes-container" aria-label="Ojos animados que siguen el cursor" role="img">
     <div class="eyes-card">
-      <video class="eyes-video" autoplay loop muted playsinline preload="auto" disablePictureInPicture>
+      <video class="eyes-video" autoplay loop muted playsinline preload="auto" disablePictureInPicture aria-hidden="true" style="display:none;">
         <source src="assets/aistudio/Animate_eyes_following_cursor_20261027092136_e5bf5cc1.mp4" type="video/mp4">
         <source src="eyes.mp4" type="video/mp4">
       </video>
-      <svg class="eyes-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <svg class="eyes-svg" viewBox="0 0 480 480" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <defs>
-          <clipPath id="clip-eye-left">
-            <ellipse cx="34.5" cy="51" rx="16.2" ry="24.8" transform="rotate(-3 34.5 51)" />
+          <!-- Recorte exacto para el ojo izquierdo (forma ovoide inclinada -5deg) -->
+          <clipPath id="clip-sclera-left">
+            <ellipse cx="123" cy="246" rx="116" ry="136" transform="rotate(-5 123 246)" />
           </clipPath>
-          <clipPath id="clip-eye-right">
-            <ellipse cx="65.5" cy="51" rx="16.2" ry="24.8" transform="rotate(3 65.5 51)" />
+          <!-- Recorte exacto para el ojo derecho (forma ovoide inclinada +5deg) -->
+          <clipPath id="clip-sclera-right">
+            <ellipse cx="359" cy="248" rx="118" ry="130" transform="rotate(5 359 248)" />
           </clipPath>
-          <radialGradient id="eye-iris" cx="42%" cy="38%" r="58%">
-            <stop offset="0%" stop-color="#f5ba63" />
-            <stop offset="40%" stop-color="#d89635" />
-            <stop offset="85%" stop-color="#b4721d" />
-            <stop offset="100%" stop-color="#8d520e" />
-          </radialGradient>
-          <radialGradient id="eye-sclera" cx="50%" cy="40%" r="62%">
-            <stop offset="0%" stop-color="#ffffff" />
-            <stop offset="78%" stop-color="#edf4fc" />
-            <stop offset="100%" stop-color="#d8e5f6" />
-          </radialGradient>
         </defs>
 
-        <!-- Base oscura de la cabeza con sutil contorno -->
-        <circle cx="50" cy="50" r="49.5" fill="#050507" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+        <!-- Base esférica oscura de la cabeza (#050507) -->
+        <circle cx="240" cy="240" r="239" fill="#050507" />
 
-        <!-- Escleróticas blancas (ojos caricatura) -->
+        <!-- Escleróticas blancas (color exacto #e5f5fc del modelo MP4) -->
         <g class="scleras">
-          <ellipse cx="34.5" cy="51" rx="16.2" ry="24.8" transform="rotate(-3 34.5 51)" fill="url(#eye-sclera)" />
-          <ellipse cx="65.5" cy="51" rx="16.2" ry="24.8" transform="rotate(3 65.5 51)" fill="url(#eye-sclera)" />
+          <!-- Ojo izquierdo -->
+          <ellipse cx="123" cy="246" rx="116" ry="136" transform="rotate(-5 123 246)" fill="#e5f5fc" />
+          <!-- Ojo derecho -->
+          <ellipse cx="359" cy="248" rx="118" ry="130" transform="rotate(5 359 248)" fill="#e5f5fc" />
         </g>
 
-        <!-- Pupila izquierda con seguimiento de cursor -->
-        <g clip-path="url(#clip-eye-left)">
+        <!-- Pupila izquierda interactiva (color exacto ámbar #c99234 del modelo MP4) -->
+        <g clip-path="url(#clip-sclera-left)">
           <g id="pupil-left" transform="translate(0, 0)">
-            <circle cx="36" cy="52" r="9.3" fill="url(#eye-iris)" />
-            <circle cx="33.6" cy="48.8" r="2.5" fill="#ffffff" opacity="0.92" />
-            <circle cx="38.2" cy="54.8" r="1.1" fill="#ffffff" opacity="0.65" />
+            <ellipse cx="164" cy="239" rx="60" ry="66" fill="#c99234" />
           </g>
-          <!-- Párpado superior para parpadeos -->
-          <rect id="eyelid-l" x="14" y="24" width="40" height="0" fill="#050507" />
+          <!-- Párpado superior para parpadeo fiel al fotograma del MP4 -->
+          <rect id="eyelid-l" class="eyelid" x="0" y="100" width="245" height="0" fill="#050507" />
         </g>
 
-        <!-- Pupila derecha con seguimiento de cursor -->
-        <g clip-path="url(#clip-eye-right)">
+        <!-- Pupila derecha interactiva (color exacto ámbar #c99234 del modelo MP4) -->
+        <g clip-path="url(#clip-sclera-right)">
           <g id="pupil-right" transform="translate(0, 0)">
-            <circle cx="64" cy="52" r="9.3" fill="url(#eye-iris)" />
-            <circle cx="61.6" cy="48.8" r="2.5" fill="#ffffff" opacity="0.92" />
-            <circle cx="66.2" cy="54.8" r="1.1" fill="#ffffff" opacity="0.65" />
+            <ellipse cx="334" cy="241" rx="56" ry="64" fill="#c99234" />
           </g>
-          <!-- Párpado superior para parpadeos -->
-          <rect id="eyelid-r" x="46" y="24" width="40" height="0" fill="#050507" />
+          <!-- Párpado superior para parpadeo fiel al fotograma del MP4 -->
+          <rect id="eyelid-r" class="eyelid" x="238" y="100" width="245" height="0" fill="#050507" />
         </g>
       </svg>
     </div>
@@ -945,23 +935,20 @@ var SRC={"negocio": {"title": "Web para un negocio local", "file": "negocio-loca
   var eyelidL = document.getElementById("eyelid-l");
   var eyelidR = document.getElementById("eyelid-r");
 
-  var rm = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var targetRotX = 0, targetRotY = 0, targetTx = 0, targetTy = 0;
   var targetPupilLX = 0, targetPupilLY = 0, targetPupilRX = 0, targetPupilRY = 0;
-  var curRotX = 0, curRotY = 0, curTx = 0, curTy = 0;
   var curPupilLX = 0, curPupilLY = 0, curPupilRX = 0, curPupilRY = 0;
   var isInteracting = false;
   var idleTime = 0;
 
-  // Sistema de parpadeo natural (como en el vídeo)
+  // Sistema de parpadeo suave idéntico al fotograma de reposo del MP4
   function blink() {
     if (!eyelidL || !eyelidR) return;
-    eyelidL.setAttribute("height", "54");
-    eyelidR.setAttribute("height", "54");
+    eyelidL.setAttribute("height", "172");
+    eyelidR.setAttribute("height", "172");
     setTimeout(function() {
       eyelidL.setAttribute("height", "0");
       eyelidR.setAttribute("height", "0");
-    }, 150);
+    }, 140);
   }
   function scheduleBlink() {
     setTimeout(function() {
@@ -976,35 +963,33 @@ var SRC={"negocio": {"title": "Web para un negocio local", "file": "negocio-loca
     var cardW = rect.width;
     var cardH = rect.height;
 
-    // Centros exactos de cada ojo en la pantalla (coordenadas globales)
-    var leftEyeX = rect.left + cardW * 0.345;
-    var leftEyeY = rect.top + cardH * 0.51;
-    var rightEyeX = rect.left + cardW * 0.655;
-    var rightEyeY = rect.top + cardH * 0.51;
-    var headCenterX = rect.left + cardW * 0.5;
-    var headCenterY = rect.top + cardH * 0.5;
+    // Centros exactos de cada pupila en coordenadas de pantalla
+    var leftEyeX = rect.left + cardW * (164 / 480);
+    var leftEyeY = rect.top + cardH * (239 / 480);
+    var rightEyeX = rect.left + cardW * (334 / 480);
+    var rightEyeY = rect.top + cardH * (241 / 480);
 
-    // Vectores trigonométricos de la mirada de cada ojo hacia el cursor
+    var maxScreenDist = Math.min(window.innerWidth, window.innerHeight) * 0.44;
+
+    // Mirada ojo izquierdo
     var dxL = clientX - leftEyeX;
     var dyL = clientY - leftEyeY;
     var angleL = Math.atan2(dyL, dxL);
     var distL = Math.hypot(dxL, dyL);
-    var normDistL = Math.min(1, distL / (Math.min(window.innerWidth, window.innerHeight) * 0.42));
+    var normDistL = Math.min(1, distL / maxScreenDist);
 
+    // Mirada ojo derecho
     var dxR = clientX - rightEyeX;
     var dyR = clientY - rightEyeY;
     var angleR = Math.atan2(dyR, dxR);
     var distR = Math.hypot(dxR, dyR);
-    var normDistR = Math.min(1, distR / (Math.min(window.innerWidth, window.innerHeight) * 0.42));
+    var normDistR = Math.min(1, distR / maxScreenDist);
 
-    // Desplazamiento de las pupilas manteniéndolas estrictamente dentro de los ojos
-    var maxMoveX = 5.8;
-    var maxMoveY = 10.0;
-
-    targetPupilLX = Math.cos(angleL) * maxMoveX * normDistL;
-    targetPupilLY = Math.sin(angleL) * maxMoveY * normDistL;
-    targetPupilRX = Math.cos(angleR) * maxMoveX * normDistR;
-    targetPupilRY = Math.sin(angleR) * maxMoveY * normDistR;
+    // Desplazamiento proporcional que mantiene las pupilas 100% dentro del ojo
+    targetPupilLX = Math.cos(angleL) * 36 * normDistL;
+    targetPupilLY = Math.sin(angleL) * 52 * normDistL;
+    targetPupilRX = Math.cos(angleR) * 36 * normDistR;
+    targetPupilRY = Math.sin(angleR) * 52 * normDistR;
   }
 
   function handlePointer(e) {
@@ -1053,27 +1038,27 @@ var SRC={"negocio": {"title": "Web para un negocio local", "file": "negocio-loca
   window.addEventListener("touchend", handleEnd, { capture: true, passive: true });
   window.addEventListener("touchcancel", handleEnd, { capture: true, passive: true });
 
-  // Bucle suave de interpolación a 60 FPS con respuesta instantánea
+  // Bucle a 60 FPS con interpolación continua y fluida (sin saltos de fotograma)
   function render() {
     if (!isInteracting) {
       idleTime += 0.025;
-      var idleX = Math.sin(idleTime * 0.7) * 0.8;
-      var idleY = Math.cos(idleTime * 0.5) * 0.5;
+      var idleX = Math.sin(idleTime * 0.7) * 4.5;
+      var idleY = Math.cos(idleTime * 0.5) * 3.0;
       targetPupilLX = idleX;
       targetPupilLY = idleY;
       targetPupilRX = idleX;
       targetPupilRY = idleY;
     }
 
-    // Damping rápido y sin retardo perceptible
-    var pupilFactor = isInteracting ? 0.22 : 0.06;
+    // Interpolación continua (lerp) ultra fluida
+    var factor = isInteracting ? 0.18 : 0.06;
 
-    curPupilLX += (targetPupilLX - curPupilLX) * pupilFactor;
-    curPupilLY += (targetPupilLY - curPupilLY) * pupilFactor;
-    curPupilRX += (targetPupilRX - curPupilRX) * pupilFactor;
-    curPupilRY += (targetPupilRY - curPupilRY) * pupilFactor;
+    curPupilLX += (targetPupilLX - curPupilLX) * factor;
+    curPupilLY += (targetPupilLY - curPupilLY) * factor;
+    curPupilRX += (targetPupilRX - curPupilRX) * factor;
+    curPupilRY += (targetPupilRY - curPupilRY) * factor;
 
-    // Actualizar únicamente las pupilas en el SVG; la esfera/vídeo permanece 100% inmóvil en su posición
+    // Actualizar posición de las pupilas dentro del SVG
     if (pupilL) {
       pupilL.setAttribute("transform", "translate(" + curPupilLX.toFixed(2) + ", " + curPupilLY.toFixed(2) + ")");
     }
@@ -1083,6 +1068,7 @@ var SRC={"negocio": {"title": "Web para un negocio local", "file": "negocio-loca
 
     requestAnimationFrame(render);
   }
+
   requestAnimationFrame(render);
 })();
 </script>
