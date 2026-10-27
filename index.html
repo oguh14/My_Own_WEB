@@ -367,7 +367,7 @@ html.go .portrait{animation-play-state:running}
  .hero h1,.hero .sub,.hero .actions,.hero .status{grid-column:1;grid-row:auto}.hero .sub{max-width:none}.hero .status{justify-self:stretch;max-width:none}
  .hero{display:flex;flex-direction:column}.hero>.wrap{order:1}
  .hero-grid{padding-bottom:0}
- .portrait{order:2;position:relative;left:auto;bottom:auto;transform:none;width:min(88vw,420px);margin:2rem auto -2.5rem;animation-name:pin2}
+ .portrait{order:2;position:relative;left:auto;bottom:auto;transform:none;width:min(78vw,360px);aspect-ratio:1;margin:2rem auto -2rem;animation-name:pin2;perspective:800px}
  @keyframes pin2{from{opacity:0;transform:translateY(22%)}}}
 .about-grid>div{max-width:44rem;margin:0 auto;padding:2rem 2.2rem;background:rgba(5,5,7,.78);border:1px solid var(--line);border-radius:16px}
 .about-grid p,.about-grid p:first-child{font-family:var(--body);font-weight:300}
@@ -422,13 +422,11 @@ footer{background:#050507;text-align:center}
 @media(prefers-reduced-motion:reduce){#intro{display:grid!important;transition:clip-path 1.1s cubic-bezier(.76,0,.24,1)!important}#intro b{animation:ipop 1.2s .2s both!important}#intro b i{animation:idot .4s 1.6s forwards!important}#intro path{animation:idraw 1.9s .1s cubic-bezier(.65,0,.35,1) forwards!important}.portrait{animation:none!important}}
 .dots{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .hero>.wrap{position:relative;z-index:2}
-/* Núcleo animado del hero (sustituye al retrato) */
-.portrait{width:min(34vw,420px);aspect-ratio:1;bottom:-14%;-webkit-mask-image:linear-gradient(#000 60%,transparent 96%);mask-image:linear-gradient(#000 60%,transparent 96%);translate:calc(var(--mx,0)*26px) calc(var(--my,0)*16px)}
-.portrait .core{position:absolute;inset:0;display:block;border-radius:46% 54% 58% 42%/52% 44% 56% 48%;background:radial-gradient(circle at 38% 28%,#555 0,#1a1a1c 34%,#050507 66%);box-shadow:inset 0 0 70px rgba(255,255,255,.14);animation:morph 9s ease-in-out infinite alternate,spin 24s linear infinite}
-.portrait .core::before{content:"";position:absolute;inset:8%;border-radius:inherit;background:conic-gradient(from 0deg,rgba(255,255,255,.0),rgba(255,255,255,.28),rgba(255,255,255,0) 40%,rgba(255,255,255,.14) 70%,rgba(255,255,255,0));filter:blur(14px);animation:spin 11s linear infinite reverse}
-@keyframes morph{50%{border-radius:58% 42% 42% 58%/44% 58% 42% 56%}100%{border-radius:42% 58% 54% 46%/58% 42% 58% 42%}}
-@keyframes spin{to{rotate:360deg}}
-.fl{position:absolute;font:600 1.1rem/1 ui-monospace,Menlo,Consolas,monospace;color:rgba(255,255,255,.28);animation:flt var(--d,9s) ease-in-out infinite alternate;animation-delay:var(--w,0s);pointer-events:none}
+/* Ojos animados del hero (sustituyen a la esfera interactiva .core) */
+.portrait{width:min(34vw,420px);aspect-ratio:1;bottom:-14%;-webkit-mask-image:linear-gradient(#000 70%,transparent 98%);mask-image:linear-gradient(#000 70%,transparent 98%);display:flex;align-items:center;justify-content:center}
+.eyes-card{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:#050507;box-shadow:0 24px 60px -15px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08),inset 0 0 45px rgba(255,255,255,.07);pointer-events:none}
+.eyes-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:50%;display:block;pointer-events:none;filter:contrast(1.04) brightness(1.02)}
+.fl{position:absolute;z-index:5;font:600 1.1rem/1 ui-monospace,Menlo,Consolas,monospace;color:rgba(255,255,255,.28);animation:flt var(--d,9s) ease-in-out infinite alternate;animation-delay:var(--w,0s);pointer-events:none}
 @keyframes flt{from{transform:translate(0,0) rotate(-8deg);opacity:.15}to{transform:translate(var(--x,14px),var(--y,-30px)) rotate(10deg);opacity:.7}}
 /* Titular: revelado por palabras */
 .hero h1 .wd{display:inline-block;overflow:hidden;vertical-align:top;padding:.04em .02em .1em;margin:-.04em 0 -.1em}
@@ -500,7 +498,66 @@ nav .nav-cta.hv{background:#333;color:#fff}
 
 <main id="inicio">
 <section class="hero">
-  <div class="portrait" aria-hidden="true"><i class="core"></i></div>
+  <div class="portrait eyes-container" aria-label="Ojos animados que siguen el cursor" role="img">
+    <div class="eyes-card">
+      <video class="eyes-video" autoplay loop muted playsinline preload="auto" disablePictureInPicture>
+        <source src="assets/aistudio/Animate_eyes_following_cursor_20261027092136_e5bf5cc1.mp4" type="video/mp4">
+        <source src="eyes.mp4" type="video/mp4">
+      </video>
+      <svg class="eyes-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <clipPath id="clip-eye-left">
+            <ellipse cx="34.5" cy="51" rx="16.2" ry="24.8" transform="rotate(-3 34.5 51)" />
+          </clipPath>
+          <clipPath id="clip-eye-right">
+            <ellipse cx="65.5" cy="51" rx="16.2" ry="24.8" transform="rotate(3 65.5 51)" />
+          </clipPath>
+          <radialGradient id="eye-iris" cx="42%" cy="38%" r="58%">
+            <stop offset="0%" stop-color="#f5ba63" />
+            <stop offset="40%" stop-color="#d89635" />
+            <stop offset="85%" stop-color="#b4721d" />
+            <stop offset="100%" stop-color="#8d520e" />
+          </radialGradient>
+          <radialGradient id="eye-sclera" cx="50%" cy="40%" r="62%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="78%" stop-color="#edf4fc" />
+            <stop offset="100%" stop-color="#d8e5f6" />
+          </radialGradient>
+        </defs>
+
+        <!-- Base oscura de la cabeza con sutil contorno -->
+        <circle cx="50" cy="50" r="49.5" fill="#050507" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+
+        <!-- Escleróticas blancas (ojos caricatura) -->
+        <g class="scleras">
+          <ellipse cx="34.5" cy="51" rx="16.2" ry="24.8" transform="rotate(-3 34.5 51)" fill="url(#eye-sclera)" />
+          <ellipse cx="65.5" cy="51" rx="16.2" ry="24.8" transform="rotate(3 65.5 51)" fill="url(#eye-sclera)" />
+        </g>
+
+        <!-- Pupila izquierda con seguimiento de cursor -->
+        <g clip-path="url(#clip-eye-left)">
+          <g id="pupil-left" transform="translate(0, 0)">
+            <circle cx="36" cy="52" r="9.3" fill="url(#eye-iris)" />
+            <circle cx="33.6" cy="48.8" r="2.5" fill="#ffffff" opacity="0.92" />
+            <circle cx="38.2" cy="54.8" r="1.1" fill="#ffffff" opacity="0.65" />
+          </g>
+          <!-- Párpado superior para parpadeos -->
+          <rect id="eyelid-l" x="14" y="24" width="40" height="0" fill="#050507" />
+        </g>
+
+        <!-- Pupila derecha con seguimiento de cursor -->
+        <g clip-path="url(#clip-eye-right)">
+          <g id="pupil-right" transform="translate(0, 0)">
+            <circle cx="64" cy="52" r="9.3" fill="url(#eye-iris)" />
+            <circle cx="61.6" cy="48.8" r="2.5" fill="#ffffff" opacity="0.92" />
+            <circle cx="66.2" cy="54.8" r="1.1" fill="#ffffff" opacity="0.65" />
+          </g>
+          <!-- Párpado superior para parpadeos -->
+          <rect id="eyelid-r" x="46" y="24" width="40" height="0" fill="#050507" />
+        </g>
+      </svg>
+    </div>
+  </div>
   <canvas class="dots" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div class="rise">
@@ -849,6 +906,184 @@ var SRC={"negocio": {"title": "Web para un negocio local", "file": "negocio-loca
  nav.addEventListener("pointerleave",clear);nav.addEventListener("pointercancel",clear);
  nav.addEventListener("click",function(e){if(e.pointerType&&e.pointerType!=="mouse")clear();});
  addEventListener("blur",clear);document.addEventListener("visibilitychange",clear);
+})();
+</script>
+<script>
+/* Seguimiento interactivo de cursor y toques para los ojos animados */
+(function(){
+  var portrait = document.querySelector(".portrait");
+  var card = document.querySelector(".eyes-card");
+  var video = document.querySelector(".eyes-video");
+  if (!portrait || !card) return;
+
+  // Garantizar reproducción continua del MP4 sin controles ni sonido
+  if (video) {
+    video.muted = true;
+    video.defaultMuted = true;
+    var playVideo = function() {
+      var p = video.play();
+      if (p !== undefined) {
+        p.catch(function() {
+          var unlock = function() {
+            video.play();
+            window.removeEventListener("pointerdown", unlock);
+            window.removeEventListener("touchstart", unlock);
+          };
+          window.addEventListener("pointerdown", unlock, { once: true, passive: true });
+          window.addEventListener("touchstart", unlock, { once: true, passive: true });
+        });
+      }
+    };
+    playVideo();
+    document.addEventListener("visibilitychange", function() {
+      if (!document.hidden && video.paused) { video.play(); }
+    });
+  }
+
+  var pupilL = document.getElementById("pupil-left");
+  var pupilR = document.getElementById("pupil-right");
+  var eyelidL = document.getElementById("eyelid-l");
+  var eyelidR = document.getElementById("eyelid-r");
+
+  var rm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var targetRotX = 0, targetRotY = 0, targetTx = 0, targetTy = 0;
+  var targetPupilLX = 0, targetPupilLY = 0, targetPupilRX = 0, targetPupilRY = 0;
+  var curRotX = 0, curRotY = 0, curTx = 0, curTy = 0;
+  var curPupilLX = 0, curPupilLY = 0, curPupilRX = 0, curPupilRY = 0;
+  var isInteracting = false;
+  var idleTime = 0;
+
+  // Sistema de parpadeo natural (como en el vídeo)
+  function blink() {
+    if (!eyelidL || !eyelidR) return;
+    eyelidL.setAttribute("height", "54");
+    eyelidR.setAttribute("height", "54");
+    setTimeout(function() {
+      eyelidL.setAttribute("height", "0");
+      eyelidR.setAttribute("height", "0");
+    }, 150);
+  }
+  function scheduleBlink() {
+    setTimeout(function() {
+      blink();
+      scheduleBlink();
+    }, 3200 + Math.random() * 2600);
+  }
+  scheduleBlink();
+
+  function updateTarget(clientX, clientY) {
+    var rect = portrait.getBoundingClientRect();
+    var cardW = rect.width;
+    var cardH = rect.height;
+
+    // Centros exactos de cada ojo en la pantalla (coordenadas globales)
+    var leftEyeX = rect.left + cardW * 0.345;
+    var leftEyeY = rect.top + cardH * 0.51;
+    var rightEyeX = rect.left + cardW * 0.655;
+    var rightEyeY = rect.top + cardH * 0.51;
+    var headCenterX = rect.left + cardW * 0.5;
+    var headCenterY = rect.top + cardH * 0.5;
+
+    // Vectores trigonométricos de la mirada de cada ojo hacia el cursor
+    var dxL = clientX - leftEyeX;
+    var dyL = clientY - leftEyeY;
+    var angleL = Math.atan2(dyL, dxL);
+    var distL = Math.hypot(dxL, dyL);
+    var normDistL = Math.min(1, distL / (Math.min(window.innerWidth, window.innerHeight) * 0.42));
+
+    var dxR = clientX - rightEyeX;
+    var dyR = clientY - rightEyeY;
+    var angleR = Math.atan2(dyR, dxR);
+    var distR = Math.hypot(dxR, dyR);
+    var normDistR = Math.min(1, distR / (Math.min(window.innerWidth, window.innerHeight) * 0.42));
+
+    // Desplazamiento de las pupilas manteniéndolas estrictamente dentro de los ojos
+    var maxMoveX = 5.8;
+    var maxMoveY = 10.0;
+
+    targetPupilLX = Math.cos(angleL) * maxMoveX * normDistL;
+    targetPupilLY = Math.sin(angleL) * maxMoveY * normDistL;
+    targetPupilRX = Math.cos(angleR) * maxMoveX * normDistR;
+    targetPupilRY = Math.sin(angleR) * maxMoveY * normDistR;
+  }
+
+  function handlePointer(e) {
+    isInteracting = true;
+    idleTime = 0;
+    updateTarget(e.clientX, e.clientY);
+  }
+
+  function handleTouch(e) {
+    if (e.touches && e.touches.length > 0) {
+      isInteracting = true;
+      idleTime = 0;
+      updateTarget(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }
+
+  function handleEnd() {
+    isInteracting = false;
+  }
+
+  // Captura inmediata a nivel de ventana y documento
+  window.addEventListener("pointermove", handlePointer, { capture: true, passive: true });
+  window.addEventListener("pointerdown", function(e) {
+    handlePointer(e);
+    blink();
+  }, { capture: true, passive: true });
+
+  // Detección inmediata en cuanto el cursor entra en la página
+  document.documentElement.addEventListener("pointerenter", handlePointer, { capture: true, passive: true });
+  window.addEventListener("mouseenter", handlePointer, { capture: true, passive: true });
+
+  // Salida de la ventana (reseteo suave al centro)
+  document.documentElement.addEventListener("pointerleave", function(e) {
+    if (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight) {
+      handleEnd();
+    }
+  }, { capture: true, passive: true });
+  window.addEventListener("mouseleave", handleEnd, { capture: true, passive: true });
+
+  // Soporte táctil
+  window.addEventListener("touchstart", function(e) {
+    handleTouch(e);
+    blink();
+  }, { capture: true, passive: true });
+  window.addEventListener("touchmove", handleTouch, { capture: true, passive: true });
+  window.addEventListener("touchend", handleEnd, { capture: true, passive: true });
+  window.addEventListener("touchcancel", handleEnd, { capture: true, passive: true });
+
+  // Bucle suave de interpolación a 60 FPS con respuesta instantánea
+  function render() {
+    if (!isInteracting) {
+      idleTime += 0.025;
+      var idleX = Math.sin(idleTime * 0.7) * 0.8;
+      var idleY = Math.cos(idleTime * 0.5) * 0.5;
+      targetPupilLX = idleX;
+      targetPupilLY = idleY;
+      targetPupilRX = idleX;
+      targetPupilRY = idleY;
+    }
+
+    // Damping rápido y sin retardo perceptible
+    var pupilFactor = isInteracting ? 0.22 : 0.06;
+
+    curPupilLX += (targetPupilLX - curPupilLX) * pupilFactor;
+    curPupilLY += (targetPupilLY - curPupilLY) * pupilFactor;
+    curPupilRX += (targetPupilRX - curPupilRX) * pupilFactor;
+    curPupilRY += (targetPupilRY - curPupilRY) * pupilFactor;
+
+    // Actualizar únicamente las pupilas en el SVG; la esfera/vídeo permanece 100% inmóvil en su posición
+    if (pupilL) {
+      pupilL.setAttribute("transform", "translate(" + curPupilLX.toFixed(2) + ", " + curPupilLY.toFixed(2) + ")");
+    }
+    if (pupilR) {
+      pupilR.setAttribute("transform", "translate(" + curPupilRX.toFixed(2) + ", " + curPupilRY.toFixed(2) + ")");
+    }
+
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
 })();
 </script>
 </body>
