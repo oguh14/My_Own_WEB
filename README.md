@@ -2,7 +2,7 @@
 
 Portafolio web personal de un desarrollador junior que empieza como freelance. Presenta mi perfil, las tecnologías que uso, tres proyectos de ejemplo, los servicios que ofrezco y cómo contactar conmigo.
 
-**Web:** https://oguh14.github.io
+**Web:** [https://oguh14.github.io](https://oguh14.github.io/My_Own_WEB/)
 
 ## Sobre mí
 
