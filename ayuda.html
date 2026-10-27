@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#080d1c">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#ffffff">
   <title>Ayuda · HugoG</title>
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{color-scheme:dark;--bg:#080d1c;--surface:#0e1630;--line:rgba(170,192,235,.16);--line-strong:rgba(170,192,235,.32);--text:#f2f5fb;--text-2:#c3cce2;--muted:#8c99ba;--accent:#ef8a58;--accent-hi:#f7a577;--ice:#a9c1ea;font-family:'Outfit',system-ui,sans-serif}
+    :root{color-scheme:light;--bg:#fff;--surface:#fff;--line:rgba(0,0,0,.14);--line-strong:rgba(0,0,0,.32);--text:#000;--text-2:#000;--muted:#000;--accent:#000;--accent-hi:#000;--ice:#000;font-family:'Outfit',system-ui,sans-serif}
     *{box-sizing:border-box}
     html{min-width:320px;min-height:100%;background:var(--bg)}
-    body{min-width:320px;min-height:100vh;margin:0;background:radial-gradient(ellipse at 78% 12%,#142042 0%,var(--bg) 48%);color:var(--text);font:400 15px/1.65 'Outfit',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+    body{min-width:320px;min-height:100vh;margin:0;background:#fff;color:var(--text);font:400 15px/1.65 'Outfit',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
     a{color:inherit}
     a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-    .topbar{height:68px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(8,13,28,.7);backdrop-filter:blur(14px)}
+    .topbar{height:68px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(255,255,255,.92);backdrop-filter:blur(14px)}
     .topbar-inner{width:min(1180px,100%);display:flex;align-items:center;justify-content:space-between;margin:auto;padding:0 clamp(20px,5vw,58px)}
     .brand{color:var(--text);font-size:22px;font-weight:500;letter-spacing:-.02em;text-decoration:none}
     .brand::after{content:"";display:inline-block;width:6px;height:6px;margin:0 0 2px 4px;border-radius:50%;background:var(--accent)}
@@ -37,7 +37,7 @@
     .chat-label{display:flex;justify-content:space-between;align-items:center;margin:0 2px 10px;color:var(--muted);font-size:9px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
     .chat-label span:first-child{display:flex;align-items:center;gap:8px}
     .chat-label i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(239,138,88,.4)}
-    .chat-frame{width:100%;height:min(700px,calc(100svh - 150px));min-height:580px;display:block;overflow:hidden;border:1px solid var(--line-strong);border-radius:8px;background:#0e0e10;box-shadow:0 24px 75px rgba(0,0,0,.48)}
+    .chat-frame{width:100%;height:min(700px,calc(100svh - 150px));min-height:580px;display:block;overflow:hidden;border:1px solid var(--line-strong);border-radius:8px;background:#fff;box-shadow:0 24px 75px rgba(0,0,0,.48)}
     footer{display:flex;justify-content:space-between;gap:16px;padding:20px clamp(20px,5vw,58px);border-top:1px solid var(--line);color:var(--muted);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
     @media(max-width:820px){main{max-width:620px;grid-template-columns:1fr;gap:34px;padding:36px 22px 44px}.intro{max-width:58ch}h1{font-size:clamp(42px,9vw,62px)}.chat-frame{height:min(680px,calc(100svh - 260px));min-height:540px}}
     @media(max-width:500px){.topbar{height:60px}.topbar-inner{padding:0 17px}.back{font-size:10px}main{gap:24px;padding:30px 16px 36px}.eyebrow{margin-bottom:15px;font-size:9px}h1{margin-bottom:15px;font-size:clamp(40px,11vw,54px)}.intro{font-size:14px}.topics{margin-top:23px}.topics li{padding:10px 0;font-size:11px}.chat-frame{height:min(650px,calc(100svh - 270px));min-height:500px}footer{flex-wrap:wrap;padding-block:14px;font-size:8px}}
